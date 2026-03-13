@@ -1,0 +1,255 @@
+// src/styles/global.scss
+#root {
+  width: 100%;
+  height: 100%;
+}
+body,
+button {
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  background: #fff;
+  color: #111;
+}
+input:focus {
+  outline: none;
+}
+.app {
+  padding: 1.5rem;
+}
+
+.phone-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  padding: 1rem 0;
+}
+
+@media (min-width: 1200px) {
+  .phone-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .phone-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .phone-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.phone-card:hover .phone-brand,
+.phone-card:hover .phone-model,
+.phone-card:hover .phone-price {
+  color: #fff;
+}
+
+.phone-card__image {
+  width: 100%;
+  height: 100%;
+  align-self: center;
+  object-fit: contain;
+}
+.phone-card__image-container {
+  overflow: hidden;
+  height: 257px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-card__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.phone-model {
+  font-size: 0.75rem;
+}
+
+.phone-brand {
+  font-size: 0.625rem;
+  color: #79736d;
+}
+
+.phone-price {
+  font-size: 1.1rem;
+  color: #111;
+  white-space: nowrap;
+}
+
+.phone-model {
+  font-size: 0.75rem;
+  color: #000;
+}
+.phone-price {
+  font-size: 0.75rem;
+  color: #111;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.phone-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 24px;
+  background: #fff;
+  border: 0.5px solid #00000081;
+  text-decoration: none;
+  padding: 1rem;
+  color: inherit;
+}
+
+.phone-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #000;
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+  z-index: 0;
+}
+
+.phone-card:hover::before {
+  transform: translateY(0);
+}
+
+.app {
+  margin: 0 2.5rem;
+}
+/* keep content above animation */
+.phone-card > * {
+  position: relative;
+  z-index: 1;
+}
+.text-xsmall {
+  font-size: 0.625rem;
+  color: #79736d;
+}
+.text-small {
+  font-size: 0.75rem;
+  color: #79736d;
+}
+
+.product-specs {
+  margin: 5rem 0;
+}
+.cart-footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: 1rem;
+}
+.cart-footer-button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  width: 25%;
+}
+.cart-item-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+  margin: 2rem 2rem;
+}
+.cart-total {
+  display: flex;
+  gap: 2rem;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+  gap: 1rem;
+}
+@media (max-width: 640px) {
+  .home-container {
+    padding: 0rem !important;
+    margin: 0 !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  .product-detail-main {
+    margin: 0 !important;
+  }
+  .product-detail-layout {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    justify-content: center !important;
+  }
+  .product-detail-image img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 400px !important;
+  }
+  .product-detail-info {
+    width: 100% !important;
+  }
+
+  .app {
+    margin: 0 0rem !important;
+  }
+
+  .storage-options button {
+    width: 80px !important;
+    height: 50px !important;
+    font-size: 0.8rem !important;
+  }
+  .similar-items {
+    margin-top: 1.5rem !important;
+  }
+  .phone-card {
+    min-width: 360px !important;
+    max-height: 344px !important;
+    padding-bottom: 2rem !important;
+  }
+  .similar-items {
+    overflow-x: visible !important;
+  }
+
+  .cart-footer-container {
+    width: 100% !important;
+  }
+  .cart-footer-button-container {
+    width: 90% !important;
+  }
+  .cart-footer-button-container button {
+    width: 100% !important;
+    font-size: 55% !important;
+    height: 2.5rem !important;
+  }
+
+  .cart-total {
+    position: absolute;
+    bottom: 15%;
+    left: 5%;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+  }
+  .cart-item > div > img {
+    width: 160px !important;
+    height: 200px !important;
+  }
+  .cart-item > div > div {
+    margin: 0 !important;
+  }
+
+  .cart-item-container {
+    margin: 0 !important;
+    padding: 0.5rem !important;
+    justify-content: space-evenly !important;
+  }
+}
