@@ -231,15 +231,13 @@ describe('ProductDetail Page', () => {
     });
   });
 
-  test('shows error and fallback on API failure', async () => {
+  test('shows not found state on API failure', async () => {
     getPhoneDetail.mockRejectedValue(new Error('API Error'));
 
     render(<ProductDetail />);
 
     await waitFor(() => {
-      expect(screen.getByText('Unable to load phone details. Showing demo product.')).toBeInTheDocument();
+      expect(screen.getByText('Product not found.')).toBeInTheDocument();
     });
-
-    expect(screen.getByText('AURORA X1')).toBeInTheDocument();
   });
 });

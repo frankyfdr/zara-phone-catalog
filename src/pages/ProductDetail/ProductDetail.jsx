@@ -42,7 +42,7 @@ export default function ProductDetail() {
       } catch {
         if (!cancelled) {
           setSimilar([]);
-          setError('Unable to load phone details');
+          setError('Unable to load phone details.');
         }
       } finally {
         if (!cancelled) setLoading(false);
