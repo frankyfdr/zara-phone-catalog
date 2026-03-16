@@ -29,7 +29,7 @@ export default function Home() {
         }
       } catch {
         if (!cancelled) {
-          setError('Unable to fetch phones; showing sample data.');
+          setError('Unable to fetch phones; please try again later.');
         }
       } finally {
         if (!cancelled) setLoading(false);

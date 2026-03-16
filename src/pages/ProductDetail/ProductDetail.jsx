@@ -9,48 +9,6 @@ import './ProductDetail.scss';
 import Button from '../../components/Button';
 import Typography from '../../components/Typography';
 
-const FALLBACK_PHONE = {
-  id: '1',
-  name: 'Aurora X1',
-  brand: 'Zara Mobile',
-  description: 'A premium smartphone with powerful performance and a sleek design.',
-  basePrice: 699,
-  rating: 4.5,
-  specs: {
-    screen: '6.1"',
-    resolution: '2556 x 1179',
-    processor: 'Custom Chip',
-    mainCamera: '48MP',
-    selfieCamera: '12MP',
-    battery: '3500mAh',
-    os: 'Android 14',
-    screenRefreshRate: '120Hz',
-  },
-  colorOptions: [
-    {
-      name: 'Midnight',
-      hexCode: '#000000',
-      imageUrl: 'https://via.placeholder.com/640x480',
-    },
-    {
-      name: 'Silver',
-      hexCode: '#c0c0c0',
-      imageUrl: 'https://via.placeholder.com/640x480',
-    },
-    {
-      name: 'Rose',
-      hexCode: '#ff69b4',
-      imageUrl: 'https://via.placeholder.com/640x480',
-    },
-  ],
-  storageOptions: [
-    { capacity: '128GB', price: 699 },
-    { capacity: '256GB', price: 799 },
-    { capacity: '512GB', price: 899 },
-  ],
-  similarProducts: [],
-};
-
 export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -78,14 +36,13 @@ export default function ProductDetail() {
         const list = detailResp?.data.similarProducts;
 
         if (!cancelled) {
-          setPhone(detail || FALLBACK_PHONE);
+          setPhone(detail);
           setSimilar((Array.isArray(list) ? list : []).filter((item) => item?.id !== id).slice(0, 4));
         }
       } catch {
         if (!cancelled) {
-          setPhone(FALLBACK_PHONE);
           setSimilar([]);
-          setError('Unable to load phone details. Showing demo product.');
+          setError('Unable to load phone details');
         }
       } finally {
         if (!cancelled) setLoading(false);
