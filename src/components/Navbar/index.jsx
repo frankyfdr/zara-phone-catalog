@@ -13,11 +13,11 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar-content">
-        <NavLink to="/" className={({ isActive }) => `navbar-logo ${isActive ? 'active' : ''}`}>
-          <img src={logo} alt="Zara logo" />
+        <NavLink to="/" name="logo" className={({ isActive }) => `navbar-logo ${isActive ? 'active' : ''}`}>
+          <img src={logo} alt="logo" />
         </NavLink>
 
-        <NavLink to="/cart" className={({ isActive }) => `navbar-cart ${isActive ? 'hidden' : ''}`}>
+        <NavLink to="/cart" data-testid="navbar-cart" className={({ isActive }) => `navbar-cart ${isActive ? 'hidden' : ''}`}>
           <img src={bagIcon} alt="Bag icon" />
           <span className="navbar-count">{itemCount}</span>
         </NavLink>

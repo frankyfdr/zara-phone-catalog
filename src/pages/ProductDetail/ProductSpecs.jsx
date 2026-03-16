@@ -5,7 +5,7 @@ export default function ProductSpecs({ specs }) {
   if (!specs) return null;
 
   return (
-    <div className="product-specs">
+    <div className="product-specs" data-testid="product-specs">
       <div style={{ paddingBottom: '1.75rem', borderBottom: '1px solid #CCCCCC' }}>SPECIFICATIONS</div>
       {Object.entries(specs).map(([key, value]) => (
         <div

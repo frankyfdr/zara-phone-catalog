@@ -6,11 +6,17 @@ import { useCartContext } from '../../hooks/useCartContext';
 // Mock react-router-dom
 let navLinkIsActive = false;
 vi.mock('react-router-dom', () => ({
-  NavLink: ({ children, to, style }) => (
-    <a href={to} style={typeof style === 'function' ? style({ isActive: navLinkIsActive && to === '/cart' }) : style}>
-      {children}
-    </a>
-  ),
+  NavLink: ({ children, to, style, className, ...props }) => {
+    const isActive = navLinkIsActive && to === '/cart';
+    const resolvedStyle = typeof style === 'function' ? style({ isActive }) : style;
+    const resolvedClassName = typeof className === 'function' ? className({ isActive }) : className;
+
+    return (
+      <a href={to} style={resolvedStyle} className={resolvedClassName} {...props}>
+        {children}
+      </a>
+    );
+  },
 }));
 
 // Mock useCartContext
@@ -19,22 +25,22 @@ vi.mock('../../hooks/useCartContext', () => ({
 }));
 
 // Mock assets
-vi.mock('../../assets/logo.png', () => 'logo.png');
-vi.mock('../../assets/bag.png', () => 'bag.png');
+vi.mock('../../assets/logo.png', () => ({ default: 'logo.png' }));
+vi.mock('../../assets/bag.png', () => ({ default: 'bag.png' }));
 
 describe('Navbar Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    navLinkIsActive = false;
   });
 
-  test('renders logo link', () => {
+  test('renders logo/home link', () => {
     useCartContext.mockReturnValue({ items: [] });
 
     render(<Navbar />);
 
-    const logoLink = screen.getByRole('link', { name: /zara logo/i });
-    expect(logoLink).toBeInTheDocument();
-    expect(logoLink).toHaveAttribute('href', '/');
+    const homeLink = screen.getAllByRole('link').find((link) => link.getAttribute('href') === '/');
+    expect(homeLink).toBeInTheDocument();
   });
 
   test('renders cart link with item count', () => {
@@ -42,7 +48,7 @@ describe('Navbar Component', () => {
 
     render(<Navbar />);
 
-    const cartLink = screen.getByRole('link', { name: /bag icon/i });
+    const cartLink = screen.getByTestId('navbar-cart');
     expect(cartLink).toBeInTheDocument();
     expect(cartLink).toHaveAttribute('href', '/cart');
     expect(screen.getByText('2')).toBeInTheDocument();
@@ -58,17 +64,15 @@ describe('Navbar Component', () => {
 
   test('cart link is hidden on cart page', () => {
     useCartContext.mockReturnValue({ items: [] });
-
-    // Set navLinkIsActive to true to simulate isActive for cart
     navLinkIsActive = true;
 
     render(<Navbar />);
 
-    // The cart link should have display: none when isActive
-    const cartLink = screen.getByRole('link', { name: /bag icon/i });
-    expect(cartLink).toHaveStyle('display: none');
+    const cartLink = screen.getByTestId('navbar-cart');
 
-    // Reset navLinkIsActive after test
-    navLinkIsActive = false;
+    const isHiddenByClass = cartLink.classList.contains('hidden');
+    const isHiddenByStyle = cartLink.style.display === 'none';
+
+    expect(isHiddenByClass || isHiddenByStyle).toBe(true);
   });
 });

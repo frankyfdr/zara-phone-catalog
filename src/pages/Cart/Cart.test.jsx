@@ -48,11 +48,11 @@ describe('Cart Page', () => {
 
     render(<Cart />);
 
-    expect(screen.getByText('CART (0)')).toBeInTheDocument();
+    expect(screen.getByText(/CART\s*\(0\)/i)).toBeInTheDocument();
     expect(screen.getByTestId('button-continue-shopping')).toBeInTheDocument();
-    expect(screen.getByTestId('button-pay')).toBeInTheDocument();
-    expect(screen.getByText('TOTAL')).toBeInTheDocument();
-    expect(screen.getByText('0 EUR')).toBeInTheDocument();
+    expect(screen.queryByTestId('button-pay')).not.toBeInTheDocument();
+    expect(screen.queryByText(/TOTAL/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/0\s*EUR/i)).not.toBeInTheDocument();
   });
 
   test('renders cart items', () => {
@@ -113,9 +113,10 @@ describe('Cart Page', () => {
   });
 
   test('pay button shows alert', () => {
+    const mockItems = [{ id: '1', name: 'Aurora X1', price: 699 }];
     useCart.mockReturnValue({
-      items: [],
-      total: 0,
+      items: mockItems,
+      total: 699,
       removeItem: vi.fn(),
     });
 

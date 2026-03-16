@@ -126,7 +126,9 @@ export default function ProductDetail() {
   if (loading) {
     return (
       <main style={{ padding: '1.5rem' }}>
-        <p>Loading product...</p>
+        <Typography variant="body" style={{ margin: 0 }}>
+          Loading product...
+        </Typography>
       </main>
     );
   }
@@ -134,7 +136,9 @@ export default function ProductDetail() {
   if (!phone) {
     return (
       <main style={{ padding: '1.5rem' }}>
-        <p>Product not found.</p>
+        <Typography variant="body" style={{ margin: 0 }}>
+          Product not found.
+        </Typography>
       </main>
     );
   }
@@ -145,7 +149,11 @@ export default function ProductDetail() {
         <Typography variant="label">&lt; BACK</Typography>
       </button>
 
-      {error ? <p style={{ color: '#c00' }}>{error}</p> : null}
+      {error ? (
+        <Typography variant="body" style={{ color: '#c00', margin: 0 }}>
+          {error}
+        </Typography>
+      ) : null}
 
       <div className="product-detail-container">
         <div className="product-detail-layout">
@@ -223,7 +231,13 @@ export default function ProductDetail() {
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'center', marginTop: '4rem' }}>
-                <Button variant={canAddToCart ? 'primary' : 'secondary'} label="AÑADIR" onClick={handleAddToCart} disabled={!canAddToCart} />
+                <Button
+                  data-testid="button-add-to-cart"
+                  variant={canAddToCart ? 'primary' : 'secondary'}
+                  label="AÑADIR"
+                  onClick={handleAddToCart}
+                  disabled={!canAddToCart}
+                />
               </div>
             </section>
           </div>
@@ -234,7 +248,9 @@ export default function ProductDetail() {
 
       {similar.length > 0 ? (
         <section className="similar-items" style={{ marginTop: '2.5rem' }}>
-          <div style={{ marginBottom: '1rem' }}>SIMILAR ITEMS</div>
+          <Typography variant="label" style={{ marginBottom: '1rem', display: 'block' }}>
+            SIMILAR ITEMS
+          </Typography>
           <div style={{ overflowX: 'auto', display: 'flex' }}>
             {similar.map((item) => (
               <PhoneCard key={item.id} phone={item} />

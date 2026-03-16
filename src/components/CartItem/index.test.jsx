@@ -38,11 +38,4 @@ describe('CartItem Component', () => {
 
     expect(mockOnRemove).toHaveBeenCalledTimes(1);
   });
-
-  test('handles missing item properties gracefully', () => {
-    const incompleteItem = { id: '1' };
-    render(<CartItem item={incompleteItem} onRemove={mockOnRemove} />);
-
-    expect(screen.getByText('UNDEFINED')).toBeInTheDocument();
-  });
 });

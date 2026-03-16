@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import CartItem from '../../components/CartItem';
 import useCart from '../../hooks/useCart';
 import Button from '../../components/Button';
+import Typography from '../../components/Typography';
 import './Cart.scss';
 
 export default function Cart() {
@@ -12,7 +13,9 @@ export default function Cart() {
   return (
     <main className="cart-main">
       <div className="cart-content">
-        <div className="cart-title">CART ({items.length})</div>
+        <Typography className="cart-title" variant="h2" style={{ margin: 0 }}>
+          CART ({items.length})
+        </Typography>
 
         <div className="cart-items">
           {items.map((item) => (
@@ -35,11 +38,15 @@ export default function Cart() {
         {items.length > 0 && (
           <div className="cart-total-section">
             <div className="cart-total">
-              <div>TOTAL</div>
-              <div>{total.toFixed(0)} EUR</div>
+              <Typography variant="label" style={{ margin: 0 }}>
+                TOTAL
+              </Typography>
+              <Typography variant="body" style={{ margin: 0 }}>
+                {total.toFixed(0)} EUR
+              </Typography>
             </div>
             <div className="cart-footer-button-container">
-              <Button variant="primary" label={'PAY'} onClick={() => alert('Payment not implemented in this demo.')} />
+              <Button data-testid="button-pay" variant="primary" label={'PAY'} onClick={() => alert('Payment not implemented in this demo.')} />
             </div>
           </div>
         )}

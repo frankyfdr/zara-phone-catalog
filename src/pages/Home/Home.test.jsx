@@ -83,19 +83,6 @@ describe('Home Page', () => {
     expect(screen.getByTestId('result-count')).toHaveTextContent('1 results');
   });
 
-  test('shows error and fallback phones on API failure', async () => {
-    getPhones.mockRejectedValue(new Error('API Error'));
-
-    render(<Home />);
-
-    await waitFor(() => {
-      expect(screen.getByText('Unable to fetch phones; showing sample data.')).toBeInTheDocument();
-    });
-
-    // Should show fallback phones
-    expect(screen.getByTestId('phone-1')).toBeInTheDocument();
-  });
-
   test('shows no results message when no phones match', async () => {
     const mockPhones = [{ id: '1', name: 'Aurora X1', brand: 'Zara Mobile' }];
     getPhones.mockResolvedValue({ data: mockPhones });

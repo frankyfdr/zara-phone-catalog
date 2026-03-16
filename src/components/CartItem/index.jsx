@@ -1,5 +1,6 @@
 // src/components/CartItem/index.jsx
 import React from 'react';
+import Typography from '../Typography';
 import './CartItem.scss';
 
 export default function CartItem({ item, onRemove }) {
@@ -10,13 +11,21 @@ export default function CartItem({ item, onRemove }) {
 
         <div className="cart-item-container">
           <div>
-            <div className="cart-item-details">{item?.name.toUpperCase()}</div>
-            <div className="cart-item-specs">{`${item.storage} | ${item.color.toUpperCase()}`}</div>
-            <div className="cart-item-price">{item?.price?.toFixed?.(0)} EUR</div>
+            <Typography className="cart-item-details" variant="h2" style={{ margin: 0, fontSize: '0.9rem' }}>
+              {item?.name.toUpperCase()}
+            </Typography>
+            <Typography className="cart-item-specs" variant="body" style={{ margin: '0.2rem 0' }}>
+              {`${item.storage} | ${item.color.toUpperCase()}`}
+            </Typography>
+            <Typography className="cart-item-price" variant="body" style={{ margin: 0 }}>
+              {item?.price?.toFixed?.(0)} EUR
+            </Typography>
           </div>
 
           <button type="button" onClick={onRemove} className="cart-item-remove">
-            Eliminar
+            <Typography variant="body" style={{ margin: 0, color: '#DF0000' }}>
+              Eliminar
+            </Typography>
           </button>
         </div>
       </div>

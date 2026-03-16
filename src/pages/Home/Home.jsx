@@ -3,39 +3,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import SearchBar from '../../components/SearchBar';
 import ResultCount from '../../components/ResultCount';
 import PhoneGrid from '../../components/PhoneGrid';
+import Typography from '../../components/Typography';
 import { getPhones } from '../../api/phoneApi';
 import './Home.scss';
-
-const FALLBACK_PHONES = [
-  {
-    id: '1',
-    name: 'Aurora X1',
-    brand: 'Zara Mobile',
-    price: 699.0,
-    image: 'https://via.placeholder.com/150',
-  },
-  {
-    id: '2',
-    name: 'Nova Pro',
-    brand: 'Zara Mobile',
-    price: 799.0,
-    image: 'https://via.placeholder.com/150',
-  },
-  {
-    id: '3',
-    name: 'Zara Lite',
-    brand: 'Zara Mobile',
-    price: 499.0,
-    image: 'https://via.placeholder.com/150',
-  },
-  {
-    id: '4',
-    name: 'PixelFlow',
-    brand: 'Zara Mobile',
-    price: 649.0,
-    image: 'https://via.placeholder.com/150',
-  },
-];
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -59,7 +29,6 @@ export default function Home() {
         }
       } catch {
         if (!cancelled) {
-          setPhones(FALLBACK_PHONES);
           setError('Unable to fetch phones; showing sample data.');
         }
       } finally {
@@ -91,11 +60,17 @@ export default function Home() {
         <ResultCount count={phonesToShow.length} total={phonesToShow.length} />
 
         {error ? (
-          <p style={{ color: '#c00' }}>{error}</p>
+          <Typography variant="body" style={{ color: '#c00', margin: 0 }}>
+            {error}
+          </Typography>
         ) : loading ? (
-          <p style={{ color: '#555' }}>Loading phones…</p>
+          <Typography variant="body" style={{ color: '#555', margin: 0 }}>
+            Loading phones…
+          </Typography>
         ) : phonesToShow.length === 0 ? (
-          <p style={{ color: '#555' }}>No matching phones found.</p>
+          <Typography variant="body" style={{ color: '#555', margin: 0 }}>
+            No matching phones found.
+          </Typography>
         ) : (
           <PhoneGrid phones={phonesToShow} />
         )}

@@ -162,7 +162,7 @@ describe('ProductDetail Page', () => {
       expect(screen.getByText('AÑADIR')).toBeInTheDocument();
     });
 
-    const addButton = screen.getByText('AÑADIR');
+    const addButton = screen.getByTestId('button-add-to-cart');
     expect(addButton).toBeDisabled();
   });
 
@@ -189,7 +189,7 @@ describe('ProductDetail Page', () => {
     fireEvent.click(storageButton);
     fireEvent.click(colorButton);
 
-    const addButton = screen.getByText('AÑADIR');
+    const addButton = screen.getByTestId('button-add-to-cart');
     expect(addButton).not.toBeDisabled();
   });
 
@@ -217,7 +217,7 @@ describe('ProductDetail Page', () => {
     fireEvent.click(storageButton);
     fireEvent.click(colorButton);
 
-    const addButton = screen.getByText('AÑADIR');
+    const addButton = screen.getByTestId('button-add-to-cart');
     fireEvent.click(addButton);
 
     expect(mockAddItem).toHaveBeenCalledWith({
