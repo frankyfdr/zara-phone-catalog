@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const apiKey = import.meta.env.VITE_API_KEY;
+
 const api = axios.create({
   baseURL: 'https://prueba-tecnica-api-tienda-moviles.onrender.com/',
   headers: {
-    'x-api-key': 'REDACTED_API_KEY',
+    'x-api-key': apiKey,
   },
 });
 
