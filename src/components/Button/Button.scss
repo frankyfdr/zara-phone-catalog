@@ -1,0 +1,19 @@
+// src/components/Button/Button.scss
+.button {
+  padding: 1rem 2rem;
+  border: none;
+  background: #000;
+  color: #fff;
+  width: 100%;
+  cursor: pointer;
+}
+
+.button.secondary {
+  border: 1px solid #000;
+  background: transparent;
+  color: #333;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+}

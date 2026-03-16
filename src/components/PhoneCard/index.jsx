@@ -1,6 +1,7 @@
 // src/components/PhoneCard/index.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './PhoneCard.scss';
 
 export default function PhoneCard({ phone }) {
   return (

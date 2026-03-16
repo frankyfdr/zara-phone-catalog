@@ -1,0 +1,139 @@
+// src/pages/ProductDetail/ProductDetail.scss
+.product-detail-main {
+  padding: 1.5rem;
+  margin: 0 2rem;
+}
+
+.product-detail-back {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+}
+
+.product-detail-container {
+  justify-content: center;
+  gap: 2rem;
+  align-items: start;
+}
+
+.product-detail-layout {
+  flex-direction: row;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-around;
+}
+
+.product-detail-image {
+  margin-bottom: 1rem;
+}
+
+.product-detail-image img {
+  object-fit: cover;
+  width: 31rem;
+  height: 39rem;
+}
+
+.product-detail-info {
+  display: flex;
+  align-items: center;
+}
+
+.product-detail-section {
+  // for the section
+}
+
+.product-detail-name {
+  margin: 0 0 0.5rem;
+}
+
+.product-detail-price {
+  margin-bottom: 1rem;
+}
+
+.product-detail-storage-title {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.storage-options {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.storage-options button {
+  padding: 0.5rem 0.75rem;
+  width: 95px;
+  height: 65px;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+  background: transparent;
+}
+
+.storage-options button.selected {
+  border: 1px solid #000000;
+}
+
+.product-detail-color-title {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.color-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.color-options div {
+  border: 1px solid #cccccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 1px;
+}
+
+.color-options div.selected {
+  border: 1px solid #000000;
+}
+
+.color-options button {
+  color: inherit;
+  width: 24px;
+  border: none;
+  height: 24px;
+  cursor: pointer;
+}
+
+.product-detail-selected-color {
+  margin-top: 10px;
+}
+
+.product-detail-add-button {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.product-detail-add-button.disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.similar-items {
+  margin-top: 2.5rem;
+}
+
+.similar-items > div {
+  margin-bottom: 1rem;
+}
+
+.similar-items > div:last-child {
+  overflow-x: auto;
+  display: flex;
+}

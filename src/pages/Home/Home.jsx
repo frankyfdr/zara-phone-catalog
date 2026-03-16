@@ -4,6 +4,7 @@ import SearchBar from '../../components/SearchBar';
 import ResultCount from '../../components/ResultCount';
 import PhoneGrid from '../../components/PhoneGrid';
 import { getPhones } from '../../api/phoneApi';
+import './Home.scss';
 
 const FALLBACK_PHONES = [
   {
@@ -83,8 +84,8 @@ export default function Home() {
   }, [query, phones]);
 
   return (
-    <main className="home-container" style={{ padding: '1.5rem' }}>
-      <div style={{ display: 'grid', gap: '1rem' }}>
+    <main className="home-main">
+      <div className="home-content">
         <SearchBar value={query} onChange={setQuery} />
 
         <ResultCount count={phonesToShow.length} total={phonesToShow.length} />

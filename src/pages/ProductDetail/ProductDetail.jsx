@@ -5,6 +5,7 @@ import { getPhoneDetail } from '../../api/phoneApi';
 import useCart from '../../hooks/useCart';
 import ProductSpecs from './ProductSpecs';
 import PhoneCard from '../../components/PhoneCard';
+import './ProductDetail.scss';
 import Button from '../../components/Button';
 import Typography from '../../components/Typography';
 
@@ -139,38 +140,23 @@ export default function ProductDetail() {
   }
 
   return (
-    <main className="product-detail-main" style={{ padding: '1.5rem', margin: '0 2rem' }}>
-      <button
-        type="button"
-        onClick={() => navigate('/')}
-        style={{
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          marginBottom: '1.5rem',
-        }}
-      >
+    <main className="product-detail-main">
+      <button type="button" onClick={() => navigate('/')} className="product-detail-back">
         <Typography variant="label">&lt; BACK</Typography>
       </button>
 
       {error ? <p style={{ color: '#c00' }}>{error}</p> : null}
 
-      <div className="product-detail-container" style={{ justifyContent: 'center', gap: '2rem', alignItems: 'start' }}>
-        <div className="product-detail-layout" style={{ flexDirection: 'row', display: 'flex', gap: '2rem', justifyContent: 'space-around' }}>
-          <div className="product-detail-image" style={{ marginBottom: '1rem' }}>
-            <img
-              src={selectedColorObj?.imageUrl ?? phone?.colorOptions?.[0]?.imageUrl}
-              alt={phone?.name}
-              style={{ objectFit: 'cover', width: '31rem', height: '39rem' }}
-            />
+      <div className="product-detail-container">
+        <div className="product-detail-layout">
+          <div className="product-detail-image">
+            <img src={selectedColorObj?.imageUrl ?? phone?.colorOptions?.[0]?.imageUrl} alt={phone?.name} />
           </div>
 
-          <div className="product-detail-info" style={{ display: 'flex', alignItems: 'center' }}>
-            <section style={{ width: '100%' }}>
-              <div style={{ margin: '0 0 0.5rem' }}>{phone.name.toUpperCase()}</div>
-              <div className="text-small" style={{ marginBottom: '1rem' }}>
-                {dynamicPrice.toFixed(0)} EUR
-              </div>
+          <div className="product-detail-info">
+            <section className="product-detail-section" style={{ width: '100%' }}>
+              <div className="product-detail-name">{phone.name.toUpperCase()}</div>
+              <div className="text-small product-detail-price">{dynamicPrice.toFixed(0)} EUR</div>
 
               <div style={{ marginBottom: '1.5rem' }}>
                 <Typography variant="label" style={{ margin: '2rem 0' }}>
